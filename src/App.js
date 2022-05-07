@@ -1,8 +1,14 @@
+import { useState } from 'react';
 import './App.css';
+import Auth from './Auth/Auth';
 
 function App() {
+    const [session, setSession] = useState(null);
+    const [theme, setTheme] = useState("dark");
     return (
-        <div> </div>
+        <div className={`app theme-${theme}`}>
+            {session ? <div>in</div> : <Auth />}
+        </div>
     );
 }
 
