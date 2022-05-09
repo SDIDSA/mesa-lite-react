@@ -442,12 +442,13 @@ body,
 }
 
 .button {
+    box-sizing: border-box;
     height: 40px;
     padding: 0 10px;
     border-radius: 4px;
     background-color: var(--brand-experiment);
-    min-width: 100px;
-    max-width: 100px;
+    min-width: 120px;
+    max-width: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -458,6 +459,9 @@ body,
     cursor: pointer;
     box-shadow: 0px 0px 0 0 var(--channels-default);
     overflow: hidden;
+    position: relative;
+    bottom: 0px;
+    right: 0px;
 }
 
 .button.invert {
@@ -465,6 +469,7 @@ body,
 }
 
 .button:hover {
-    letter-spacing: 2px;
     box-shadow: 3px 3px 0 0 var(--channels-default);
+    bottom: 1.5px;
+    right: 1.5px;
 }

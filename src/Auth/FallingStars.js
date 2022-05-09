@@ -2,11 +2,11 @@ import './FallingStars.css'
 import FallingStar from './FallingStar';
 function FallingStars() {
     let stars = []
-    for(let i = 0; i<24;i++) {
+    for (let i = 0; i < 16; i++) {
         stars.push(<FallingStar key={i}/>)
     }
 
-    return(
+    return (
         <div className="falling-stars">
             {stars}
         </div>

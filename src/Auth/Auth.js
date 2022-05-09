@@ -7,7 +7,7 @@ import Mesa from '../icons/Mesa';
 import Login from './Login';
 import Register from './Register';
 
-function Auth() {
+function Auth(props) {
     const [at, setAt] = useState("login");
 
     function openLogin() {
@@ -37,8 +37,8 @@ function Auth() {
             </div>
 
             <div className='content'>
-                <Login />
-                <Register />
+                <Login api={props.api}/>
+                <Register api={props.api} openLogin={openLogin}/>
             </div>
 
             <Footer />

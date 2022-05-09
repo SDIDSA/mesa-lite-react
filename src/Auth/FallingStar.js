@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import FallingStarPoint from "./FallingStarPoint";
 
-function FallingStar() {
+const length = 16;
+
+function FallingStar(props) {
     const [dimension, updateDimention] = useState({
         width: window.innerWidth,
         height: window.innerHeight
@@ -22,15 +24,15 @@ function FallingStar() {
 
     function initPos() {
         if (dimension) {
-            return { x: Math.random() * dimension.width, y: Math.random() * dimension.height }
+            return { x: Math.random() * dimension.width, y: Math.random() * dimension.height, dx: 0, ddx: 1 }
         } else {
-            return { x: 0, y: 0 };
+            return { x: 0, y: 0, dx: 0, ddx: 1, rdx: 0, rdy: 0 };
         }
     }
 
     function initAllPos() {
         let poses = [];
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < length; i++) {
             poses.push(initPos());
         }
         return poses;
@@ -40,7 +42,7 @@ function FallingStar() {
 
     function initPoints() {
         const pts = [];
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < length; i++) {
             pts.push(
                 <FallingStarPoint key={i} index={i} pos={pos} />
             );
@@ -50,41 +52,75 @@ function FallingStar() {
 
     const points = initPoints();
 
+    const max_x = 3;
+    const min_x = 1;
+    const speed = (Math.random() * .1) + .02
     useEffect(() => {
         const interval = setInterval(() => {
             let newPos = initAllPos();
-            for (let i = 1; i < 8; i++) {
+            for (let i = 1; i < length; i++) {
                 newPos[i] = pos[i - 1];
             }
+
+            let ddx = pos[0].ddx;
+            let dx = pos[0].dx + speed * ddx;
+            if (dx > max_x) {
+                dx = max_x;
+                ddx = -1;
+            }
+            if (dx < min_x) {
+                dx = min_x;
+                ddx = 1;
+            }
+
+            let xfact, yfact;
+            if (props.hover && props.mouse) {
+                xfact = (props.mouse.x / dimension.width - .5) * 3;
+                yfact = (props.mouse.y / dimension.height - .5) * 3;
+
+            }
+
+            let rdx = dx * (xfact ? xfact : 1);
+            let rdy = 2 * (yfact ? yfact : 1);
             newPos[0] = {
-                x: pos[0].x + 1 + Math.random(),
-                y: pos[0].y + 2 + Math.random()
+                dx,
+                ddx,
+                rdx,
+                rdy,
+                x: pos[0].x + rdx,
+                y: pos[0].y + rdy
             }
 
             let lastPos = newPos[newPos.length - 1];
-            if (lastPos.x > dimension.width || lastPos.y > dimension.height) {
-                let top = Math.random() >= 0.5;
-                if (top) {
-                    newPos[0].y = -5;
-                    newPos[0].x = Math.random() * dimension.width;
-                } else {
-                    newPos[0].x = -5;
-                    newPos[0].y = Math.random() * dimension.height;
-                }
+            if (lastPos.x > dimension.width + 5) {
+                newPos[0].x = -5;
+                newPos[0].y = Math.random() * dimension.height;
+            }
+            if (lastPos.y > dimension.height + 5) {
+                newPos[0].y = -5;
+                newPos[0].x = Math.random() * dimension.width;
+            }
+            if (lastPos.x < -5) {
+                newPos[0].x = dimension.width + 5;
+                newPos[0].y = Math.random() * dimension.height;
+            }
+            if (lastPos.y < -5) {
+                newPos[0].y = dimension.height + 5;
+                newPos[0].x = Math.random() * dimension.width;
             }
             setPos(newPos);
-        }, 40);
+        }, 30);
         return () => clearInterval(interval);
     })
 
     return (
         <div style={{
             width: '100vw',
-            height: '100vh', 
-            top: 0, 
+            height: '100vh',
+            top: 0,
             left: 0,
             position: "fixed",
-            opacity: .5
+            opacity: .7
         }}>
             {points}
         </div>

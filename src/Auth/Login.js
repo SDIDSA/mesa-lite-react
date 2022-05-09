@@ -1,14 +1,14 @@
-import { styled, TextField } from "@mui/material";
+import axios from "axios";
+import { useState } from "react";
+import Button from "../components/Button";
+import Input from "../components/Input";
 
-const CssTextField = styled(TextField)({
-    '& .MuiOutlinedInput-root': {
-        '&.Mui-focused fieldset': {
-            borderColor: 'var(--brand-experiment)',
-        },
-    },
-});
+function Login(props) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-function Login() {
+    const [ehint, setEhint] = useState("");
+    const [phint, setPhint] = useState("");
     return (
         <div className="auth-page login">
             <div className="root">
@@ -16,29 +16,35 @@ function Login() {
                     <span className="head">Welcome to Mesa</span>
                     <span className="sub-head">Login to your mesa account</span>
                 </div>
+                <div className="inputs">
+                    <Input
+                        hint={ehint}
+                        id="email"
+                        label="Email"
+                        value={email}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                        }} />
 
-                <CssTextField
+                    <Input
+                        hint={phint}
+                        id="pass"
+                        label="Password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                        }} />
+                </div>
+
+                <Button
+                    label="Login"
                     fullWidth
-                    id="outlined-basic"
-                    label="Email"
-                    variant="outlined"
-                    color="info"
-                    inputProps={{ style: { fontFamily: "var(--font-primary)", color: "var(--text-normal)" } }}
-                    InputLabelProps={{ style: { fontFamily: "var(--font-primary)", color: "var(--text-normal)" } }}
-                />
-
-                <CssTextField
-                    type="password"
-                    fullWidth
-                    id="outlined-basic"
-                    label="Password"
-                    variant="outlined"
-                    color="info"
-                    inputProps={{ style: { fontFamily: "var(--font-primary)", color: "var(--text-normal)" } }}
-                    InputLabelProps={{ style: { fontFamily: "var(--font-primary)", color: "var(--text-normal)" } }}
-                />
-
-                <div className="button">Login</div>
+                    onClick={(e) => {
+                        axios.post(props.api + "/account/login", { email, password }).then(res => {
+                            console.log(res.data);
+                        })
+                    }} />
             </div>
         </div>
     );
