@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1730" viewBox="0 0 1080 1730">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #3b3e44;
+      }
+
+      .cls-1 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M251.5,128.368L397.382,274.25,245,426.632,99.118,280.75Z"/>
+  <path id="Rectangle_1_copy" data-name="Rectangle 1 copy" class="cls-1" d="M251.247,1217.99l145.76,145.76L244.753,1516.01,98.993,1370.25Z"/>
+  <circle class="cls-2" cx="661" cy="1536" r="121"/>
+  <circle id="Ellipse_1_copy" data-name="Ellipse 1 copy" class="cls-2" cx="1054" cy="898" r="121"/>
+  <circle id="Ellipse_1_copy_2" data-name="Ellipse 1 copy 2" class="cls-2" cx="661" cy="454" r="121"/>
+  <rect class="cls-2" x="343" y="700" width="373" height="134"/>
+</svg>

@@ -1,25 +1,22 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Auth from './Auth/Auth';
+
+const api = "http://localhost:4000";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [session, setSession] = useState(null);
+    const [theme, setTheme] = useState("dark");
+
+    function login(session) {
+        setSession(session);
+    }
+
+    return (
+        <div className={`app theme-${theme}`}>
+            {session ? <div>in</div> : <Auth login={login} api={api}/>}
+        </div>
+    );
 }
 
 export default App;

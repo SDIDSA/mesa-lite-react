@@ -1,0 +1,157 @@
+.auth {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.auth>.before {
+    content: "";
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background-color: var(--background-primary);
+}
+
+.auth>.top {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--background-tertiary);
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+    bottom: 0;
+}
+
+.auth>.top>.left,
+.auth>.top>.right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+}
+
+.auth>.top>.left>.logo {
+    margin-right: 15px;
+}
+
+.auth>.content {
+    width: 100vw;
+    height: calc(100% - 100px);
+    position: relative;
+}
+
+.auth>.content>.auth-page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+}
+
+.auth>.content>.auth-page>.root {
+    position: relative;
+    background-color: var(--background-tertiary);
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 400px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth>.content>.auth-page>.root>.in-root {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth.register>.content>.login {
+    left: 100%;
+}
+
+.auth.login>.content>.register {
+    left: -100%;
+}
+
+.auth>.content>.auth-page>.root>.in-root>.top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.auth>.content>.auth-page>.root .head {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.auth>.content>.auth-page>.root .sub-head {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.auth>.content>.auth-page>.root>.in-root>.inputs>.MuiFormControl-root+.MuiFormControl-root {
+    margin-top: 15px;
+}
+
+.auth>.content>.auth-page>.root>.in-root>.inputs {
+    margin-bottom: 10px;
+}
+
+.auth>.content>.auth-page>.root>.in-root>a {
+    position: relative;
+    font-size: 13px;
+    left: 5px;
+    align-self: flex-start;
+}
+
+.auth>.content>.auth-page>.root>.in-root>.button {
+    margin-top: 25px;
+}
+
+.auth.logging>.content>.auth-page>.root {
+    border-radius: 10%;
+    max-width: 300px;
+    max-height: 300px !important;
+}
+
+.auth.logging>.content>.auth-page>.root>.in-root {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.auth.logging>.content>.auth-page>.root>.in-root>.spinner {
+    transform: scale(1.5) o !important;
+}
+
+.auth.logging>.top {
+    bottom: 70px;
+}
+
+.auth.logging>.footer {
+    bottom: -30px;
+}
+
+.auth.logged>.content>.auth-page>.root {
+    transform: scale(2);
+    opacity: 0;
+}
+
+.auth.logged>.before {
+    background-color: var(--background-tertiary);
+}
+
+.auth.logged>.falling-stars {
+    opacity: 0;
+}
