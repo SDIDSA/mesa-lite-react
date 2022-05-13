@@ -12,15 +12,6 @@ function Login(props) {
         {
             key: "email",
             get: props.email.get,
-            hint: props.email.setHint,
-        }, {
-            key: "password",
-            value: props.password.get,
-            hint: props.password.setHint,
-        },
-        {
-            key: "email",
-            get: props.email.get,
             set: props.email.set,
             hint: props.email.setHint,
         }, {
