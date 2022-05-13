@@ -1,8 +1,7 @@
-import './FallingStars.css'
 import FallingStar from './FallingStar';
 function FallingStars() {
     let stars = []
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < 8; i++) {
         stars.push(<FallingStar key={i}/>)
     }
 

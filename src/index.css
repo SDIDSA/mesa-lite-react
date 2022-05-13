@@ -427,6 +427,17 @@
     user-select: none;
 }
 
+.falling-stars {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+input {
+    user-select: auto;
+}
+
 html,
 body,
 #root {
@@ -442,13 +453,16 @@ body,
 }
 
 .button {
-    box-sizing: border-box;
     height: 40px;
-    padding: 0 10px;
+    position: relative;
+}
+
+.button>.clickable {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
     border-radius: 4px;
     background-color: var(--brand-experiment);
-    min-width: 120px;
-    max-width: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -464,12 +478,104 @@ body,
     right: 0px;
 }
 
-.button.invert {
+.button.invert>.clickable {
     background-color: var(--button-secondary-background);
 }
 
-.button:hover {
+.button:hover>.clickable {
     box-shadow: 3px 3px 0 0 var(--channels-default);
     bottom: 1.5px;
     right: 1.5px;
+}
+
+
+.button.disable {
+    min-width: 0px !important;
+    max-width: 0px !important;
+    pointer-events: none;
+}
+
+.button.loading>.clickable {
+    opacity: 0;
+    transform: scale(.7);
+    pointer-events: none;
+}
+
+.spinner {
+    height: 30px;
+    width: 30px;
+    border-width: 3px;
+    border-style: solid;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    pointer-events: none;
+    opacity: 0;
+    animation: load-spin 1s ease-in-out infinite;
+}
+
+.loading>.spinner {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@keyframes load-spin {
+    0% {
+        border-color: var(--brand-experiment);
+        border-radius: 50%;
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        border-radius: 15%;
+        border-color: var(--text-default);
+        transform: scale(.7) rotate(90deg);
+    }
+    100% {
+        border-color: var(--brand-experiment);
+        border-radius: 50%;
+        transform: scale(1) rotate(180deg);
+    }
+}
+
+.spinner::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    animation: load-inner-spin 1s ease-in-out infinite;
+}
+
+@keyframes load-inner-spin {
+    0% {
+        border-radius: 50%;
+        transform: scale(1) rotate(0deg);
+        background-color: var(--channels-default);
+    }
+    50% {
+        border-radius: 15%;
+        transform: scale(.9) rotate(-180deg);
+        background-color: var(--brand-experiment);
+    }
+    100% {
+        border-radius: 50%;
+        transform: scale(1) rotate(-360deg);
+        background-color: var(--channels-default);
+    }
+}
+
+a {
+    color: var(--text-link);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

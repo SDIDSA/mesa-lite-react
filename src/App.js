@@ -7,9 +7,14 @@ const api = "http://localhost:4000";
 function App() {
     const [session, setSession] = useState(null);
     const [theme, setTheme] = useState("dark");
+
+    function login(session) {
+        setSession(session);
+    }
+
     return (
         <div className={`app theme-${theme}`}>
-            {session ? <div>in</div> : <Auth api={api}/>}
+            {session ? <div>in</div> : <Auth login={login} api={api}/>}
         </div>
     );
 }

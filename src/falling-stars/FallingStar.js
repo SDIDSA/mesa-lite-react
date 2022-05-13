@@ -73,15 +73,8 @@ function FallingStar(props) {
                 ddx = 1;
             }
 
-            let xfact, yfact;
-            if (props.hover && props.mouse) {
-                xfact = (props.mouse.x / dimension.width - .5) * 3;
-                yfact = (props.mouse.y / dimension.height - .5) * 3;
-
-            }
-
-            let rdx = dx * (xfact ? xfact : 1);
-            let rdy = 2 * (yfact ? yfact : 1);
+            let rdx = dx;
+            let rdy = 2;
             newPos[0] = {
                 dx,
                 ddx,

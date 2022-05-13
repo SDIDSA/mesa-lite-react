@@ -11,6 +11,7 @@ const CssTextField = styled(TextField)({
 function Input(props) {
     return (
         <CssTextField
+            autoFocus
             error={props.hint !== ""}
             helperText={props.hint}
             value={props.value}
@@ -22,8 +23,8 @@ function Input(props) {
             variant="outlined"
             color="info"
             inputProps={{ style: { fontFamily: "var(--font-primary)", color: "var(--text-normal)" } }}
-            InputLabelProps={{ style: { fontFamily: "var(--font-primary)", color: "var(--channels-default)" } }}
-            FormHelperTextProps={{ style: { fontFamily: "var(--font-primary)"}}}
+            InputLabelProps={{ ...(props.type === "date" && { shrink: true }), style: { fontFamily: "var(--font-primary)", color: "var(--channels-default)" } }}
+            FormHelperTextProps={{ style: { fontFamily: "var(--font-primary)" } }}
         />
     )
 }

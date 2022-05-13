@@ -1,6 +1,16 @@
 .auth {
     width: 100%;
     height: 100%;
+    position: relative;
+}
+
+.auth>.before {
+    content: "";
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background-color: var(--background-primary);
 }
 
 .auth>.top {
@@ -14,6 +24,7 @@
     justify-content: space-between;
     position: relative;
     z-index: 10;
+    bottom: 0;
 }
 
 .auth>.top>.left,
@@ -26,13 +37,6 @@
 
 .auth>.top>.left>.logo {
     margin-right: 15px;
-}
-
-.auth>.top .button.disable {
-    min-width: 0px;
-    max-width: 0px;
-    padding: 0;
-    pointer-events: none;
 }
 
 .auth>.content {
@@ -52,15 +56,24 @@
 }
 
 .auth>.content>.auth-page>.root {
+    position: relative;
     background-color: var(--background-tertiary);
     box-sizing: border-box;
     padding: 20px;
     border-radius: 10px;
     width: 400px;
-    max-width: calc(100vw - 30px);
+    max-width: 400px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+}
+
+.auth>.content>.auth-page>.root>.in-root {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
 }
 
 .auth.register>.content>.login {
@@ -71,7 +84,7 @@
     left: -100%;
 }
 
-.auth>.content>.auth-page>.root>.top {
+.auth>.content>.auth-page>.root>.in-root>.top {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,10 +101,57 @@
     margin-top: 10px;
 }
 
-.auth>.content>.auth-page>.root>.inputs>.MuiFormControl-root+.MuiFormControl-root {
+.auth>.content>.auth-page>.root>.in-root>.inputs>.MuiFormControl-root+.MuiFormControl-root {
     margin-top: 15px;
 }
 
-.auth>.content>.auth-page>.root>.inputs {
-    margin-bottom: 40px;
+.auth>.content>.auth-page>.root>.in-root>.inputs {
+    margin-bottom: 10px;
+}
+
+.auth>.content>.auth-page>.root>.in-root>a {
+    position: relative;
+    font-size: 13px;
+    left: 5px;
+    align-self: flex-start;
+}
+
+.auth>.content>.auth-page>.root>.in-root>.button {
+    margin-top: 25px;
+}
+
+.auth.logging>.content>.auth-page>.root {
+    border-radius: 10%;
+    max-width: 300px;
+    max-height: 300px !important;
+}
+
+.auth.logging>.content>.auth-page>.root>.in-root {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.auth.logging>.content>.auth-page>.root>.in-root>.spinner {
+    transform: scale(1.5) o !important;
+}
+
+.auth.logging>.top {
+    bottom: 70px;
+}
+
+.auth.logging>.footer {
+    bottom: -30px;
+}
+
+.auth.logged>.content>.auth-page>.root {
+    transform: scale(2);
+    opacity: 0;
+}
+
+.auth.logged>.before {
+    background-color: var(--background-tertiary);
+}
+
+.auth.logged>.falling-stars {
+    opacity: 0;
 }
