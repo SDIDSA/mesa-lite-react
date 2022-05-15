@@ -1,20 +1,31 @@
 import { useState } from 'react';
 import './App.css';
-import Auth from './Auth/Auth';
+import Auth from './auth/Auth';
+import cookies from './cookies';
+import Session from './session/Session';
 
 const api = "http://localhost:4000";
 
 function App() {
-    const [session, setSession] = useState(null);
+    const [session, setSession] = useState(cookies.get("token"));
     const [theme, setTheme] = useState("dark");
 
-    function login(session) {
-        setSession(session);
+    function setToken(token) {
+        cookies.set("token", token)
+        setSession(token);
     }
 
     return (
         <div className={`app theme-${theme}`}>
-            {session ? <div>in</div> : <Auth login={login} api={api}/>}
+            {session !== "" ?
+                <Session
+                    setTheme={setTheme}
+                    token={session}
+                    setToken={setToken}
+                    api={api} /> :
+                <Auth
+                    setToken={setToken}
+                    api={api} />}
         </div>
     );
 }

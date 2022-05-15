@@ -137,10 +137,12 @@
 
 .auth.logging>.top {
     bottom: 70px;
+    opacity: 0;
 }
 
 .auth.logging>.footer {
     bottom: -30px;
+    opacity: 0;
 }
 
 .auth.logged>.content>.auth-page>.root {

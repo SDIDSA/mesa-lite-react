@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import sha1 from "sha1";
@@ -30,14 +30,20 @@ function Login(props) {
 
     props.setResetErrors(resetErrors);
 
-    function logging() {
+    function logging(token) {
         let loginRoot = document.getElementById("login-root");
         let height = loginRoot.clientHeight;
         loginRoot.style.maxHeight = height + "px";
         loginRoot.style.height = height + "px";
         setTimeout(() => {
-            props.logging(true);
+            props.logging(token);
         }, 1);
+    }
+
+    function unsetHeight() {
+        let loginRoot = document.getElementById("login-root");
+        loginRoot.style.height = "auto";
+        loginRoot.style.maxHeight = "10000px";
     }
 
     return (
@@ -74,9 +80,9 @@ function Login(props) {
                         label="Login"
                         fullWidth
                         onClick={(e) => {
+                            unsetHeight();
                             let required = false;
                             inputs.forEach(input => {
-                                console.log(input)
                                 if (input.get === "") {
                                     input.hint("This field is required")
                                     required = true;
@@ -101,7 +107,7 @@ function Login(props) {
                                         })
                                         setLoading(false);
                                     } else {
-                                        logging();
+                                        logging(res.data.token);
                                         setTimeout(() => {
                                             setLoading(false);
                                         }, 2000);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Auth.css';
 import FallingStars from '../falling-stars/FallingStars';
 import Footer from '../Footer';
@@ -17,8 +17,15 @@ function Auth(props) {
     const [ehint, setEhint] = useState("");
     const [phint, setPhint] = useState("");
 
-    const [isLogging, setLoggin] = useState(false);
-    const [isLogged, setLogged] = useState(false);
+    const [isLogging, setLoggin] = useState(true);
+    const [isLogged, setLogged] = useState(true);
+
+    useEffect(() => {
+        setLogged(false);
+        setTimeout(() => {
+            setLoggin(false);
+        }, 1000)
+    }, [])
 
     let resetErrorsLogin, resetErrorsRegister;
 
@@ -46,18 +53,16 @@ function Auth(props) {
         }, 200);
     }
 
-    function logging() {
+    function logging(token) {
         setTimeout(() => {
             setLoggin(true);
             setTimeout(() => {
                 setLogged(true);
                 setTimeout(() => {
-                    //props.login("Lukas")
+                    props.setToken(token);
+                    setLoggin(false);
                     setLogged(false);
-                    setTimeout(() => {
-                        setLoggin(false);
-                    }, 2000);
-                }, 1000);
+                }, 300);
             }, 2000);
         }, 500);
     }

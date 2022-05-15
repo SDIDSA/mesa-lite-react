@@ -1,0 +1,111 @@
+.session.loading >.root>.top {
+    top: -70px;
+    opacity: 0;
+}
+
+.session, .session>.root {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+.session>.root>.top {
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+    width: 100%;
+    background-color: var(--background-secondary);
+    box-shadow: 0 1px 3px 0px rgb(0,0,0,.3);
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: 0;
+    box-sizing: border-box;
+    padding-right: 10px;
+    padding-left: 15px;
+}
+
+.session>.root>.top>.left,
+.session>.root>.top>.right {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+}
+
+.session>.root>.top>.right>.pfp {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    padding: 2px;
+    background-color: var(--channels-default);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.session>.root>.top>.right.open>.pfp {
+    padding: 5px;
+}
+
+.session>.root>.top>.right>.menu {
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: -175px;
+    right: 0;
+    border-radius: 7px;
+    background-color: var(--background-secondary);
+    box-shadow: 0 0 5px 0px rgb(0,0,0,.3);
+    padding: 10px;
+    transform-origin: top;
+    z-index: -1;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.session>.root>.top>.right.open>.menu {
+    top: calc(100% + 20px);
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.session>.root>.top>.left>.logo {
+    margin-right: 15px;
+}
+
+.session>.root>.top>.right>.menu>.menu-items {
+    width: 100%;
+}
+
+.session>.root>.top>.right>.menu>.menu-items>.menu-item {
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 4px;
+    padding: 0 10px;
+}
+
+.session>.root>.top>.right>.menu>.menu-items>.menu-item:hover {
+    background-color: var(--background-modifier-hover);
+}
+
+.session>.root>.top>.right>.menu>.menu-items>.menu-item>* {
+    pointer-events: none;
+}
+
+.session>.root>.top>.right>.menu>.menu-items>.menu-item>.label {
+    font-size: 14px;
+    font-weight: 500;
+}
